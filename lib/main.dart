@@ -4,7 +4,7 @@ import 'package:pokedex/common/repositories/pokemon_repository.dart';
 import 'package:pokedex/features/pokedex/route.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

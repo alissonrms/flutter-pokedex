@@ -15,8 +15,8 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: false,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 10),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 10),
           child: Text(
             'Pokedex',
             style: TextStyle(color: Colors.black, fontSize: 26),
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 color: Colors.black,
               ),
