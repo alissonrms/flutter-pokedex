@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/common/models/pokemon.dart';
+import 'package:pokedex/features/pokedex/screens/details/pages/widgets/about_widget.dart';
+import 'package:pokedex/features/pokedex/screens/details/pages/widgets/evolutions_widget.dart';
 
 import 'widgets/detail_app_bar_widget.dart';
 import 'widgets/detail_list_widget.dart';
@@ -25,7 +27,6 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   late ScrollController scrollController;
-
   @override
   void initState() {
     super.initState();
@@ -64,24 +65,41 @@ class _DetailPageState extends State<DetailPage> {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height - 100,
                 child: Stack(
+                  alignment: Alignment.topRight,
                   children: [
                     Container(
                       color: widget.pokemon.baseColor,
                     ),
                     Container(
+                      padding: const EdgeInsets.all(24),
                       decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(24),
                             topRight: Radius.circular(24),
                           )),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              AboutWidget(
+                                pokemon: widget.pokemon,
+                                pokemons: widget.list,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
+                    EvolutionsWidget(
+                        evolutions: widget.pokemon.nextEvolutions,
+                        pokemons: widget.list)
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -18,7 +18,7 @@ class TypeWidget extends StatelessWidget {
           padding: const EdgeInsets.all(6),
           child: Text(
             name,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
           ),
         ),

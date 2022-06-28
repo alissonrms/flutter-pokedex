@@ -1,33 +1,61 @@
 import 'package:flutter/material.dart';
 
+class Evolution {
+  final int num;
+
+  factory Evolution.fromMap(Map<String, dynamic> json) {
+    return Evolution(num: int.parse(json['num']));
+  }
+
+  Evolution({
+    required this.num,
+  });
+}
+
 class Pokemon {
   final String name;
   final List<String> type;
   final int id;
   final String num;
+  final String height;
+  final String weight;
+  final double spawnChance;
+  final List<Evolution> nextEvolutions;
 
   factory Pokemon.fromMap(Map<String, dynamic> json) {
     return Pokemon(
-      name: json['name'],
-      id: json['id'],
-      num: json['num'],
-      type: (json['type'] as List<dynamic>)
-          .map(
-            (e) => e as String,
-          )
-          .toList(),
-    );
+        name: json['name'],
+        id: json['id'],
+        num: json['num'],
+        height: json['height'],
+        weight: json['weight'],
+        spawnChance: json['spawn_chance'].toDouble(),
+        type: (json['type'] as List<dynamic>)
+            .map(
+              (e) => e as String,
+            )
+            .toList(),
+        nextEvolutions: (json['next_evolution'] == null
+                ? []
+                : json['next_evolution'] as List<dynamic>)
+            .map(
+              (e) => Evolution.fromMap(e),
+            )
+            .toList());
   }
 
   Color? get baseColor => _color(type: type[0]);
   String get image =>
       'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png';
-  Pokemon({
-    required this.name,
-    required this.type,
-    required this.id,
-    required this.num,
-  });
+  Pokemon(
+      {required this.name,
+      required this.type,
+      required this.id,
+      required this.num,
+      required this.height,
+      required this.weight,
+      required this.spawnChance,
+      required this.nextEvolutions});
 
   static Color? _color({required String type}) {
     switch (type) {
